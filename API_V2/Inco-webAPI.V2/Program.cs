@@ -25,6 +25,7 @@ LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),
 "/nlog.config"));
 
 // Configure services
+// config
 
 
 builder.Services.ConfigureLoggerService();
