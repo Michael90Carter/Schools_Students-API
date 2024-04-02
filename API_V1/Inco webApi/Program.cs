@@ -1,6 +1,7 @@
 ﻿using Inco_webApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Inco_webApi.Controllers;
+using Inco_webApi.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ApiKeyAuthMiddleware>();
 
 app.UseAuthorization();
 
