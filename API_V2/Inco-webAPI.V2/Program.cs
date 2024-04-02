@@ -29,6 +29,7 @@ LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),
 
 
 builder.Services.ConfigureLoggerService();
+
 builder.Services.AddDbContext<RepositoryContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("sqlConnection"),
      optionsBuilder => optionsBuilder.MigrationsAssembly("Inco-webAPI.V2"))
@@ -39,31 +40,29 @@ builder.Services.ConfigureRepositoryManager();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
-
 var app = builder.Build();
 
 var envi = ((IApplicationBuilder)app).ApplicationServices.GetRequiredService<IOptions<IWebHostEnvironment>>();
 
-var options = app.Services.GetRequiredService<IOptions<ILoggerManager>>();
+var logger = app.Services.GetRequiredService<ILoggerManager>();
 
 var env = app.Environment;
-
-var logger = app.Services.GetService<ILoggerManager>();
 
 
 if (env.IsDevelopment())
     {
-    app.UseExceptionHandler((ExceptionHandlerOptions)logger);
+     app.UseDeveloperExceptionPage();
     }
-    else
-    {
+
+    else {
+         
         app.UseHsts();
-    }
 
-
+         }
 
 
 // Configure the HTTP request pipeline.
+
 
 app.UseHttpsRedirection();
 

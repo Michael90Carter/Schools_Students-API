@@ -1,5 +1,6 @@
-using Inco_webApi.Models;
+﻿using Inco_webApi.Models;
 using Microsoft.EntityFrameworkCore;
+using Inco_webApi.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,5 +28,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();

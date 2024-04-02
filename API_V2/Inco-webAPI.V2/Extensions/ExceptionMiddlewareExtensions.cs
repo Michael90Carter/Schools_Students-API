@@ -1,4 +1,7 @@
-﻿using Entities.ErrorModel;
+﻿using LoggerService;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Entities.ErrorModel;
 using Microsoft.AspNetCore.Diagnostics;
 using Schools;
 using System.Net;
@@ -10,6 +13,7 @@ namespace Inco_webAPI.V2.Extensions
         public static void ConfigureExceptionHandler(this IApplicationBuilder app,
             ILoggerManager logger)
         {
+
             app.UseExceptionHandler(appError =>
             {
                 appError.Run(async context =>
@@ -30,5 +34,5 @@ namespace Inco_webAPI.V2.Extensions
             });
         }
 
-    }
+    } 
 }
